@@ -1,19 +1,28 @@
-const DeliveryStatus = {
-  RINGDOWN_SENT: 'RINGDOWN SENT',
-  RINGDOWN_RECEIVED: 'RINGDOWN RECEIVED',
-  RINGDOWN_CONFIRMED: 'RINGDOWN CONFIRMED',
-  ARRIVED: 'ARRIVED',
-  OFFLOADED: 'OFFLOADED',
-  OFFLOADED_ACKNOWLEDGED: 'OFFLOADED ACKNOWLEDGED',
-  RETURNED_TO_SERVICE: 'RETURNED TO SERVICE',
-  CANCELLED: 'CANCELLED',
-  CANCEL_ACKNOWLEDGED: 'CANCEL ACKNOWLEDGED',
-  REDIRECTED: 'REDIRECTED',
-  REDIRECT_ACKNOWLEDGED: 'REDIRECT ACKNOWLEDGED',
+const ALL_STATUSES = [
+	"RINGDOWN SENT",
+	"RINGDOWN RECEIVED",
+	"RINGDOWN CONFIRMED",
+	"ARRIVED",
+	"OFFLOADED",
+	"OFFLOADED ACKNOWLEDGED",
+	"RETURNED TO SERVICE",
+	"CANCELLED",
+	"CANCEL ACKNOWLEDGED",
+	"REDIRECTED",
+	"REDIRECT ACKNOWLEDGED"
+] as const;
+
+type Status = (typeof ALL_STATUSES)[number];
+
+type S = {
+	[K in Status]: K
 };
 
-DeliveryStatus.ALL_STATUSES = Object.values(DeliveryStatus);
+const is = (status: Status, target: Status) => ALL_STATUSES.indexOf(status) >= ALL_STATUSES.indexOf(target);
 
-DeliveryStatus.is = (status: keyof typeof DeliveryStatus, target: keyof typeof DeliveryStatus) => DeliveryStatus.ALL_STATUSES.indexOf(status) >= DeliveryStatus.ALL_STATUSES.indexOf(target);
+const DeliveryStatus = ALL_STATUSES.reduce((result, status) => ({
+		...result,
+		[status.replaceAll(" ", "_")]: status
+	}), { ALL_STATUSES, is });
 
 export default Object.freeze(DeliveryStatus);
