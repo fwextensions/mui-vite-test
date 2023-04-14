@@ -1,16 +1,12 @@
 import { useState } from "react";
 import { Button, Stack, TextField } from "@mui/material";
-import "./App.css";
 
 function App()
 {
 	const [count, setCount] = useState(0);
 
 	return (
-		<Stack
-			spacing={2}
-			sx={{ width: "50%" }}
-		>
+		<Stack spacing={2}>
 			<TextField
 				label="Enter something:"
 				fullWidth={true}

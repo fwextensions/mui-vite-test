@@ -1,4 +1,4 @@
-import ModelMetadata from '../ModelMetadata';
+import ModelMetadata from '@/shared/ModelMetadata';
 import { DeliveryStatus } from '../constants';
 
 export default new ModelMetadata({

@@ -1,4 +1,4 @@
-import ModelMetadata from '../ModelMetadata';
+import ModelMetadata from '@/shared/ModelMetadata';
 
 export default new ModelMetadata({
 	modelName: 'HospitalStatusUpdate',

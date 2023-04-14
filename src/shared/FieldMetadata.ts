@@ -1,4 +1,4 @@
-type Modify<T, R> = Omit<T, keyof R> & R;
+import { Modify } from "@/utils/types";
 
 type BaseField<T> = {
 	name: string,
